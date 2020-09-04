@@ -49,11 +49,11 @@ def main():
   # Filter psmpkl
   psms_filtered1 = psms[ psms['pep'] <= prob_cutoff ]
   psms_filtered2 = psms_filtered1[ psms_filtered1['protein_id'].str.contains('|'.join(protein_list['protein_id']))]
-  psms_filtered2.to_pickle(psmfilteredfile)
+  psms_filtered2.to_pickle(psmfilteredfile, protocol=4)
   
   # Filter peakpkl
   peaks_filtered = peaks[ peaks['scan_id'].isin(psms_filtered2['scan_id'])]
-  peaks_filtered.to_pickle(peakfilteredfile)
+  peaks_filtered.to_pickle(peakfilteredfile, protocol=4)
 
   
 if __name__ == "__main__":
