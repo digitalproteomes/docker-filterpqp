@@ -49,6 +49,8 @@ def main():
   # Filter psmpkl
   psms_filtered1 = psms[ psms['pep'] <= prob_cutoff ]
   psms_filtered2 = psms_filtered1[ psms_filtered1['protein_id'].str.contains('|'.join(protein_list['protein_id']))]
+  # easypqp expects a q_value column even when running with --nofdr
+  psms_filtered2['q_value'] = 0
   psms_filtered2.to_pickle(psmfilteredfile)
   
   # Filter peakpkl
